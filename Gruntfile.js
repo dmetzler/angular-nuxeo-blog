@@ -37,6 +37,10 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['livereload']
+      },
+      karma: {
+        files: ['app/js/**/*.js', 'test/browser/**/*.js'],
+        tasks: ['karma:unit:run'] //NOTE the :run flag
       }
     },
     connect: {
@@ -95,10 +99,17 @@ module.exports = function (grunt) {
       ]
     },
     karma: {
+      options: {
+        configFile: 'karma.conf.js',
+      },
       unit: {
+        
+      },
+      continuous: {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+
     },
     coffee: {
       dist: {
@@ -254,7 +265,7 @@ module.exports = function (grunt) {
     'clean:server',
     'coffee',
     'connect:test',
-    'karma'
+    'karma:continuous'
   ]);
 
   grunt.registerTask('build', [

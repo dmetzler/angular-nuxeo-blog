@@ -1,10 +1,13 @@
 'use strict';
 
 angular.module('angularBlogApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+
+.controller('MainCtrl', ['$scope','NuxeoDirectory', function ($scope, NuxeoDirectory) {
+  $scope.awesomeThings = [
+    'HTML5 Boilerplate',
+    'AngularJS',
+    'Karma' 
+  ];
+
+  $scope.continents = NuxeoDirectory("continent").query()
+}]);
